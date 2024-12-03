@@ -37,8 +37,10 @@ def toyProblem():
   SSE_rand = []
   # Run the clustering with k=5 and max_iters=20 fifty times and 
   # store the final sum-of-squared-error for each run in the list SSE_rand.
-  raise Exception('Student error: You haven\'t implemented the randomness experiment for Q5.')
-  
+  num_runs = 50
+  for _ in range(num_runs):
+    centroids, assignments, SSE = kMeansClustering(X, k=k, max_iters=max_iters, visualize=False)
+    SSE_rand.append(SSE[-1])  # Store the final SSE of this run
 
   # Plot error distribution
   plt.figure(figsize=(8,8))
@@ -54,7 +56,7 @@ def toyProblem():
   SSE_vs_k = []
   # Run the clustering max_iters=20 for k in the range 1 to 150 and 
   # store the final sum-of-squared-error for each run in the list SSE_vs_k.
-  raise Exception('Student error: You haven\'t implemented the randomness experiment for Q5.')
+  raise Exception('Student error: You haven\'t implemented the randomness experiment for Q6.')
 
   # Plot how SSE changes as k increases
   plt.figure(figsize=(16,8))
