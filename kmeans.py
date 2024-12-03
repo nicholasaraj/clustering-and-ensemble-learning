@@ -112,7 +112,12 @@ def imageProblem():
 ##########################################################
 
 def initalizeCentroids(dataset, k):
-  raise Exception('Student error: You haven\'t implemented initializeCentroids yet.')
+  # Randomly select k unique indices from the dataset without replacement
+  indices = np.random.choice(dataset.shape[0], k, replace=False)
+  
+  # Use the selected indices to pick k initial centroids from the dataset
+  centroids = dataset[indices]
+
   return centroids
 
 ##########################################################
@@ -131,7 +136,11 @@ def initalizeCentroids(dataset, k):
 ##########################################################
 
 def computeAssignments(dataset, centroids):
-  raise Exception('Student error: You haven\'t implemented computeAssignments yet.')
+  # Calculate pairwise distances between points and centroids
+  distances = np.linalg.norm(dataset[:, np.newaxis] - centroids, axis=2) 
+
+  assignments = np.argmin(distances, axis=1)  # Assign the nearest centroid (index)
+  
   return assignments
 
 ##########################################################
@@ -154,7 +163,25 @@ def computeAssignments(dataset, centroids):
 ##########################################################
 
 def updateCentroids(dataset, centroids, assignments):
-  raise Exception('Student error: You haven\'t implemented updateCentroids yet.')
+  # Number of clusters (k) and number of features (d)
+  k, d = centroids.shape
+  
+  # Initialize updated centroids and counts
+  centroids = np.zeros_like(centroids)
+  counts = np.zeros(k, dtype=int)
+  
+  # Iterate through each cluster index
+  for j in range(k):
+    # Find the points assigned to cluster j
+    cluster_points = dataset[assignments == j]
+    
+    # Update the centroid as the mean of the points, if there are points assigned
+    if len(cluster_points) > 0:
+      centroids[j] = np.mean(cluster_points, axis=0)
+    
+    # Count the number of points assigned to this cluster
+    counts[j] = len(cluster_points)  
+      
   return centroids, counts
   
 
@@ -174,7 +201,17 @@ def updateCentroids(dataset, centroids, assignments):
 ##########################################################
 
 def calculateSSE(dataset, centroids, assignments):
-  raise Exception('Student error: You haven\'t implemented calculateSSE yet.')
+  # Initialize SSE to 0
+  sse = 0.0
+
+  # Iterate through each point in the dataset
+  for i in range(dataset.shape[0]):
+    #Get the centroid assigned to the current data point
+    centroid = centroids[assignments[i]]
+
+    # Calculate the squared Euclidian distance between the data point and its assigned centroid
+    sse += np.sum((dataset[i] - centroid) ** 2)  
+
   return sse
   
 
