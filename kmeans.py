@@ -78,13 +78,13 @@ def imageProblem():
 
 
   # Perform k-means clustering
-  k=10
+  k=3
   centroids, assignments, SSE = kMeansClustering(img_feats, k, 30, min_size=0)
 
   # Visualize Clusters
   for c in range(len(centroids)):
     # Get images in this cluster
-    members = np.where(assignments==c)[0].astype(np.int)
+    members = np.where(assignments==c)[0].astype(int)
     imgs = data[np.random.choice(members,min(50, len(members)), replace=False),:,:]
     
     # Build plot with 50 samples
