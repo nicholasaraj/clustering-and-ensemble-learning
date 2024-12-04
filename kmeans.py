@@ -56,7 +56,11 @@ def toyProblem():
   SSE_vs_k = []
   # Run the clustering max_iters=20 for k in the range 1 to 150 and 
   # store the final sum-of-squared-error for each run in the list SSE_vs_k.
-  raise Exception('Student error: You haven\'t implemented the randomness experiment for Q6.')
+  for k in range(1, 151):
+    # Run k-means clustering for each k
+    centroids, assignments, SSE = kMeansClustering(X, k=k, max_iters=20, visualize=False)
+    # Append the final SSE to the list
+    SSE_vs_k.append(SSE[-1])  # Store the final SSE of this run
 
   # Plot how SSE changes as k increases
   plt.figure(figsize=(16,8))
