@@ -38,9 +38,15 @@ for m in range(M):
   X_data = X_train
   y_data = y_train
 
+  # Apply bagging
+  # indices = np.random.choice(len(X_train), size=len(X_train), replace=True)
+  # X_data = X_train[indices]
+  # y_data = y_train[indices]
+
 
   #Fit the model and store it's predictions
-  clf = tree.DecisionTreeClassifier(criterion="entropy")
+  clf = tree.DecisionTreeClassifier(criterion="entropy", max_features=5)
+  # clf = tree.DecisionTreeClassifier(criterion="entropy")
   clf = clf.fit(X_data, y_data)
   preds[:,m]= clf.predict(X_test)
 
