@@ -1,4 +1,3 @@
-# We are going to cheat a little here and use a package for the dataset and decision trees. Thats why this isn't considered an implementation question.
 from sklearn import tree
 from sklearn.datasets import load_breast_cancer
 import numpy as np

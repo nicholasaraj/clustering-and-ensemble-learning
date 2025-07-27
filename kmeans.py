@@ -28,9 +28,7 @@ def toyProblem():
   plt.show()
 
 
-  #############################
-  # Q5 Randomness in Clustering
-  #############################
+  # Randomness in Clustering
   k = 5
   max_iters = 20
 
@@ -49,9 +47,7 @@ def toyProblem():
   plt.ylabel("# Runs")
   plt.show()
 
-  ########################
-  # Q6 Error vs. K
-  ########################
+  # Error vs. K
 
   SSE_vs_k = []
   # Run the clustering max_iters=20 for k in the range 1 to 150 and 
@@ -220,11 +216,6 @@ def calculateSSE(dataset, centroids, assignments):
 
   return sse
   
-
-########################################
-# Instructor Code: Don't need to modify 
-# beyond this point but should read it
-########################################
 
 def kMeansClustering(dataset, k, max_iters=10, min_size=0, visualize=False):
   
