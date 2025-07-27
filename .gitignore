@@ -1,3 +1,5 @@
 *.npy
 generate.py
 *.png
+*.pdf
+*.zip
